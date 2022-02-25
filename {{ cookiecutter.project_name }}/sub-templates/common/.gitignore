@@ -1,0 +1,21 @@
+.DS_Store
+.classpath.txt
+target
+build
+.classpath
+.project
+.idea
+.settings
+.vscode
+*.iml
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+
+.gradle/
+
+# Code Coverage reports
+.coverage
+coverage.xml
+htmlcov/

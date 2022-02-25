@@ -1,0 +1,10 @@
+{
+    "project_name": "hello-project",
+    "service_name": "hello",
+    "runtime": "python3.9",
+    "timeout": "25",
+    "memory": "1024",
+    "type": "sam",
+    "trigger": "s3",
+    "architecture": "x86_64"
+}

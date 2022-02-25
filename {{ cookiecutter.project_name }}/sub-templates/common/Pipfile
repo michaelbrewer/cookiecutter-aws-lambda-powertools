@@ -1,0 +1,40 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+
+[dev-packages]
+black = "*"
+isort = "*"
+flake8 = "*"
+flake8-black = "*"
+flake8-builtins = "*"
+flake8-comprehensions = "*"
+flake8-debugger = "*"
+flake8-fixme = "*"
+flake8-isort = "*"
+flake8-variables-names = "*"
+flake8-eradicate = "*"
+flake8-bugbear = "*"
+mypy = "*"
+safety = "*"
+bandit = "*"
+radon = "*"
+xenon ="*"
+pytest = "*"
+pytest-cov = "*"
+pytest-mock = "*"
+moto = "*"
+# Included in the lambda layer
+boto3 = "*"
+botocore = "*"
+aws-lambda-powertools = "*"
+aws-xray-sdk = "*"
+
+[requires]
+python_version = "3.9"
+
+[pipenv]
+allow_prereleases = true
