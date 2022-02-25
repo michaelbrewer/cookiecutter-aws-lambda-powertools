@@ -44,3 +44,15 @@ Option | Description
 ## License
 
 Foo Bar
+
+## TODO
+
+List of templates to support
+
+- [X] S3 Sam template
+- [ ] S3 Object Lambda template
+- [ ] API GW Rest API template
+- [ ] API GW Http API template
+- [ ] API GW Request Custom Authorizer (Http API payload V1) template
+- [ ] AppSync Resolver template
+- [ ] AppSync Custom Authorize template
