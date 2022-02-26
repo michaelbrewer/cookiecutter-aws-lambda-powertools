@@ -1,5 +1,5 @@
 import boto3
-import requests
+import urllib.request
 
 from aws_lambda_powertools import Logger
 from aws_lambda_powertools.logging.correlation_paths import S3_OBJECT_LAMBDA
@@ -14,8 +14,8 @@ s3 = session.client("s3")
 @event_source(data_class=S3ObjectLambdaEvent)
 def lambda_handler(event: S3ObjectLambdaEvent, context):
     # Get object from S3
-    response = requests.get(event.input_s3_url)
-    original_object = response.content.decode("utf-8")
+    with urllib.request.urlopen(event.input_s3_url) as response:
+        original_object = response.read().decode("utf-8")
 
     # Make changes to the object about to be returned
     transformed_object = original_object.upper()

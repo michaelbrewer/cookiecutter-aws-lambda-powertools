@@ -2,6 +2,24 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: S3 Object Lambda
 
+Globals: # https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-template-anatomy-globals.html
+  Function:
+      Timeout: {{cookiecutter.timeout}}
+      MemorySize: {{cookiecutter.memory}}
+      Runtime: {{cookiecutter.runtime}}
+      Tracing: Active # https://docs.aws.amazon.com/lambda/latest/dg/lambda-x-ray.html
+      # Embed Lambda Powertools as a shared Layer
+      # See: https://awslabs.github.io/aws-lambda-powertools-python/latest/#lambda-layer
+      Layers: # 
+          - !Sub arn:aws:lambda:${AWS::Region}:017000801446:layer:AWSLambdaPowertoolsPython:11
+      Environment:
+          Variables:
+              # Powertools env vars: https://awslabs.github.io/aws-lambda-powertools-python/#environment-variables
+              LOG_LEVEL: INFO
+              POWERTOOLS_LOGGER_LOG_EVENT: true
+              POWERTOOLS_METRICS_NAMESPACE: {{cookiecutter.project_name}}
+              POWERTOOLS_SERVICE_NAME: {{cookiecutter.service_name}}
+
 Resources:
   S3Bucket:
     Type: 'AWS::S3::Bucket'
@@ -65,9 +83,6 @@ Resources:
     Properties:
       Handler: {{cookiecutter.service_name}}.app.lambda_handler
       CodeUri: src
-      Runtime: {{cookiecutter.runtime}}
-      MemorySize: {{cookiecutter.memory}}
-      Timeout: {{cookiecutter.timeout}}
       # The function needs permission to call back to the S3 Object Lambda Access Point with the WriteGetObjectResponse.
       Policies:
         - S3CrudPolicy:
@@ -76,7 +91,7 @@ Resources:
           - Effect: Allow
             Action: 's3-object-lambda:WriteGetObjectResponse'
             Resource: '*'
-   
+
 Outputs:
   S3BucketName:
     Value: !Ref S3Bucket
