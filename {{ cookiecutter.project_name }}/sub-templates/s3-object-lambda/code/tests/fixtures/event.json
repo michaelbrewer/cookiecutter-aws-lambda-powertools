@@ -3,7 +3,7 @@
     "getObjectContext": {
         "inputS3Url": "https://myap-123412341234.s3-accesspoint.us-east-1.amazonaws.com/s3.txt?X-Amz-Security-Token=...",
         "outputRoute": "io-iad-cell001",
-        "outputToken": "..."
+        "outputToken": "token-123412341234"
     },
     "configuration": {
         "accessPointArn": "arn:aws:s3-object-lambda:us-east-1:123412341234:accesspoint/myolap",
